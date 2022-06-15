@@ -8,10 +8,11 @@ const prisma = require('../utils/prisma.js')
 router.post('/', async (req, res) => {
     const { username, password } = req.body;
 
+    const passwordHash = await bcrypt.hash(password, 10)
     const createdUser = await prisma.user.create({
         data: {
             username,
-            password
+            password: passwordHash
         }
     });
 
