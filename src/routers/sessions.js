@@ -16,7 +16,7 @@ router.post('/', async (req, res) => {
 
     const passwordIsValid = bcrypt.compare(password, foundUser.password)
 
-    if (!foundUser || passwordIsValid !== foundUser.password) {
+    if (!foundUser || passwordIsValid) {
         return res.status(401).json({ error: 'Invalid username or password.' });
     }
 
